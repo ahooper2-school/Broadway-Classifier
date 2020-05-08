@@ -9,7 +9,7 @@ def create_theater_dir(theater_name):
         os.makedirs(theater_name)
 
 def download_images_from_url(dir_name, url):
-    '''Download all images from hte specified page'''
+    '''Download all images from the specified page'''
     context = ssl._create_unverified_context()
     response = urllib.request.urlopen(url, context=context)
     html = response.read()
