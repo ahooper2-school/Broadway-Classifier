@@ -16,6 +16,7 @@ def download_images_from_url(dir_name, url):
     soup = BeautifulSoup(html, features="html.parser")
 
     imgTags = soup.findAll('img', {"class": "grid_image"})
+    num_downloaded = 0
     for imgTag in imgTags:
         imgUrl = imgTag['src']
         if imgUrl.lower().endswith('.jpg'):
@@ -24,16 +25,27 @@ def download_images_from_url(dir_name, url):
             output = open(filename,'wb')
             output.write(imgData)
             output.close()
-            print("> downloaded:", imgUrl)
+            num_downloaded += 1
+    return num_downloaded
 
 def download_img_for_theater(theater_name):
     '''Dowload all images for the specified theater'''
     dir_name = theater_name.replace(" ", "")
-    url_theater_name = theater_name.replace(" ", "+")
+    url_theater_name = urllib.parse.quote(theater_name)
     create_theater_dir(dir_name)
-    page_num = 1
-    url = "https://aviewfrommyseat.com/venue/{venue}/?page={page_num}".format(venue = url_theater_name, page_num=page_num)
-    download_images_from_url(dir_name, url)
 
-theater_name = "Walter Kerr Theatre"
-download_img_for_theater(theater_name)
+    downloaded_images_from_page = True
+    page_num = 1
+    while(downloaded_images_from_page):
+        url = "https://aviewfrommyseat.com/venue/{venue}/?page={page_num}".format(venue = url_theater_name, page_num=page_num)
+        print(">>> downloading page:", page_num)
+        num_downloaded = download_images_from_url(dir_name, url)
+        downloaded_images_from_page = num_downloaded > 0
+        page_num += 1
+
+theaters = open(os.path.abspath("./data/theaters.txt")).read().split('\n')
+
+for theater in theaters:
+    if len(theater) > 1:
+        print("downloading for:", theater)
+        download_img_for_theater(theater)
