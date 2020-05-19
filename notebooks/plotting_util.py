@@ -11,7 +11,7 @@ def remove_ticks(ax):
   ax.set_xticks([])
   ax.set_yticks([])
 
-def plot_classification_examples(prediction, actual, im):
+def plot_classification_examples(prediction, actual, im, count=10):
   """
   Plot sample images with predictions and actual labels
   """
@@ -20,7 +20,7 @@ def plot_classification_examples(prediction, actual, im):
   fh.set_figheight(10)
   fh.set_figwidth(15)
   num_test=actual.shape[0]
-  for i in range(10):
+  for i in range(count):
     ax=plt.subplot(2,5,i+1)
     remove_ticks(ax)
     lh=plt.xlabel(labels[np.argmax(prediction[i])])
