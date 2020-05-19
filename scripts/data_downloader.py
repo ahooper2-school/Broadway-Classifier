@@ -43,7 +43,7 @@ def download_img_for_theater(theater_name):
         downloaded_images_from_page = num_downloaded > 0
         page_num += 1
 
-theaters = open(os.path.abspath("./data/theaters.txt")).read().split('\n')
+theaters = open(os.path.abspath("../data/theaters.txt")).read().split('\n')
 
 for theater in theaters:
     if len(theater) > 1:

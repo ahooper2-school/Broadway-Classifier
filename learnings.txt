@@ -1,0 +1,6 @@
+Learnings:
+
+1. Keras can handle all the data preprocessing we will ever need, so our only job is to grab the raw data.
+2. ImageGenerator loops indefinitely unless the steps per epoch are specified in model.fit_generator.
+3. Out of memory exceptions? Restart the kernel.
+4. Loss of NaN while training? Need to decrease image size and batch size.
