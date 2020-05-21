@@ -1,11 +1,40 @@
 <!DOCTYPE html>
 <head>
   <title>Broadway Classifier</title>
+  <link rel="stylesheet"  type="text/css" href="styles.css">
+  <script>
+    var loadFile = function(event) {
+        var image = document.getElementById('image');
+        image.src = URL.createObjectURL(event.target.files[0]);
+        image.hidden = false;
+
+        const Http = new XMLHttpRequest();
+        const url='https://us-central1-root-amulet-273522.cloudfunctions.net/classify_image';
+        Http.open("POST", url);
+        Http.send();
+
+        Http.onreadystatechange = function() {
+            if(this.readyState==4 && this.status==200)
+            {
+                var label = document.getElementById('image-label');
+                label.textContent = Http.responseText;
+                label.hidden = false;
+            }
+        }
+
+    };
+    </script>
 </head>
 <body>
-  Broadway Classifier!
-  <form>
-    <label for="fname">Upload Image:</label><br>
-    <input type="text" id="fname" name="fname"><br>
-  </form>
+    <div class='form-div'>
+        <div class='inner-form-div'>
+            <h1>Broadway Classifier</h1>
+            <p>Upload an image of a Broadway theater to generate a classification.</p>
+            <form>
+                <input type="file" id="myFile" name="filename" onchange="loadFile(event)">
+            </form>
+            <br><img id="image" hidden="true">
+            <p id="image-label" hidden="true">
+        </div>
+    </div>
 </body>
