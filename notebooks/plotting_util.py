@@ -16,6 +16,13 @@ def plot_classification_examples(prediction, actual, im, count=10):
   Plot sample images with predictions and actual labels
   """
   labels = load_labels()
+  plot_labeled_class_examples(prediction, lables, actual, im, count)
+
+def load_labels():
+    theaters = open(os.path.abspath("../scripts/theaters.txt")).read().split('\n')
+    return theaters
+
+def plot_labeled_class_examples(prediction, labels, actual, im, count=10):
   fh = plt.figure()
   fh.set_figheight(10)
   fh.set_figwidth(15)
@@ -29,7 +36,4 @@ def plot_classification_examples(prediction, actual, im, count=10):
     else:
       lh.set_color('red')
     plt.imshow(im[i])
-
-def load_labels():
-    theaters = open(os.path.abspath("../scripts/theaters.txt")).read().split('\n')
-    return theaters
+    
