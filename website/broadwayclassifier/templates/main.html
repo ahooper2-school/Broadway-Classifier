@@ -10,8 +10,9 @@
 
         const Http = new XMLHttpRequest();
         const url='https://us-central1-root-amulet-273522.cloudfunctions.net/classify_image';
-        Http.open("POST", url);
-        Http.send();
+        Http.open("POST", url, true);
+
+        Http.send(event.target.files[0]);
 
         Http.onreadystatechange = function() {
             if(this.readyState==4 && this.status==200)
