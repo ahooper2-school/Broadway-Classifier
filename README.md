@@ -1,6 +1,6 @@
 # Broadway-Classifier
 
-[Repository for the Broadway Image Classifier project](https://sites.google.com/view/broadwayclassifier/home)
+Repository for the [Broadway Image Classifier project](https://sites.google.com/view/broadwayclassifier/home)
 
 This project was developed as part of the **UW CSEP 590C Spring 2020 - Full Stack Deep Learning** course.
 
