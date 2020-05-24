@@ -22,6 +22,22 @@ def load_labels():
     theaters = open(os.path.abspath("../scripts/theaters.txt")).read().split('\n')
     return theaters
 
+def plot_test_examples(prediction, test_labels, actual, im, count=10):
+  fh = plt.figure()
+  fh.set_figheight(10)
+  fh.set_figwidth(15)
+  num_test=actual.shape[0]
+  actual_labels = load_labels()
+  for i in range(count):
+    ax=plt.subplot(2,5,i+1)
+    remove_ticks(ax)
+    lh=plt.xlabel(actual_labels[np.argmax(prediction[i])])
+    if (actual_labels[np.argmax(prediction[i])].replace(" ", "")==test_labels[np.argmax(actual[i])]):
+      lh.set_color('green')
+    else:
+      lh.set_color('red')
+    plt.imshow(im[i])    
+
 def plot_labeled_class_examples(prediction, labels, actual, im, count=10):
   fh = plt.figure()
   fh.set_figheight(10)
