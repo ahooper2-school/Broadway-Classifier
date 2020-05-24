@@ -71,7 +71,8 @@ def classify_image(request):
     headers = {
         'Access-Control-Allow-Origin': '*'
     }
-
+    
+    request_json = request.get_json(silent=True)
     # TODO: classify image from request
-    return (classify(request.content), 200, headers)
+    return (classify(request_json["content"]), 200, headers)
 # [END functions_classify_image]
