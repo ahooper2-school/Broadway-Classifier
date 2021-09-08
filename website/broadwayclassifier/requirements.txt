@@ -2,5 +2,5 @@ flask==1.1.2
 google-cloud-error-reporting==0.34.0
 tensorflow==2.0.0b0
 google-cloud-storage==1.16.1
-Pillow==6.0.0
+Pillow==8.3.2
 numpy==1.18.2
